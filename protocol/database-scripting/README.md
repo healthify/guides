@@ -7,7 +7,12 @@ Development
 -----------
 
 Develop the scripting story similarly to any other story. In this case, this would
-entail running your script at the rails console of your local server.
+entail running your script at the rails console of your local server during development.
+
+Typically, our scripts should live in the `db/data_migrations/` subdirectory within
+the `healthify/` app repo. In rare cases where that's not feasible, you might use
+a secret [gist](https://help.github.com/articles/about-gists/), whose you link you
+should post on Pivotal Tracker and share with your Code Reviewers.
 
 While some scripts only lend themselves to being performed via pure SQL, where it
 is possible, you should leverage ActiveRecord to perform our `INSERT`/`UPDATE`/`DELETE`
@@ -29,12 +34,17 @@ being `INSERT`-ed by our script, and then the reversal script would delete those
 records.
 
 For `UPDATE`/`DELETE` operations, we would want to dump the data of all the records
-we will be interacting with into a "rescue table" (a table of the which we would keep
+we will be interacting with into a "rescue table" (a table of the data which we would keep
 for only around a week before deleting. Such a table would ideally live in a
 `rescue_table.*` DB schema). Our reversal script would then perform a COPY of the data
 from the rescue table into the original table (and a deletion of updated records in the
 case of an Update). Although an inferior option, it alternatively often suffices to dump
 the data into a csv in lieu of a rescue table.
+
+As with feature development, it may be valuable to write tests to ensure the
+the script yields desired behavior. Notably however, you may choose to move
+the assertions of your tests *into the script itself* as assertions that will
+trigger a transaction rollback if they fail.
 
 **Handling PHI**
 
@@ -45,12 +55,6 @@ a rescue table in Aptible.
 
 Code Review
 -----------
-
-Typically, console scripts are not code that we want to add to the Healthify app's
-code repo. As a result, to solicit Code Review you can put your code in a Github
-[gist](https://help.github.com/articles/about-gists/) and share the gist's link
-with your teammates to get Code Review. Also, be sure to include make the gist `private`
-and to include a link to the gist in the description of the corresponding Pivotal Story.
 
 Running database scripts poses a higher risk than deploying a normal feature. Hence,
 it's important to have a higher bar of Code Review than for normal stories. Make sure
