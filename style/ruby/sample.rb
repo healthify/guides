@@ -76,6 +76,11 @@ class SomeClass
     rest_of_body
   end
 
+  def method_with_guard_clause
+    return some_value if some_condition?
+    rest_of_body
+  end
+
   def method_that_uses_factory
     user = user_factory.new
     user.ensure_authenticated!

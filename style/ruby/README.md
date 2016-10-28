@@ -3,12 +3,11 @@ Ruby
 
 [Sample](sample.rb)
 
-* Avoid conditional modifiers (lines that end with conditionals).
 * Avoid multiple assignments per line (`one, two = 1, 2`).
 * Avoid organizational comments (`# Validations`).
 * Avoid ternary operators (`boolean ? true : false`). Use multi-line `if`
   instead to emphasize code branches.
-* Avoid explicit return statements.
+* Don't use explicit `return` except in guard clauses.
 * Avoid using semicolons.
 * Avoid bang (!) method names. Prefer descriptive names.
 * Don't use `self` explicitly anywhere except class methods (`def self.method`)
