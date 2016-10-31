@@ -1,120 +1,50 @@
-Git Protocol
-============
+# Proposal: Use release branches and cease automatic staging
 
-A guide for programming within version control.
+Our current process for integrating, delivering, and deploying to healthify:
 
-Maintain a Repo
----------------
+1. Create a changeset on a development branch forked from `master`.
+2. Submit a pull request to merge the branch into `master`.
+3. Review the changes in the pull request.
+4. Merge the development branch into `master`, triggering delivery to staging.
+5. Conduct manual QA through the front end of the staging app.
 
-* Avoid including files in source control that are specific to your
-  development machine or process.
-* Delete local and remote feature branches after merging.
-* Perform work in a feature branch.
-* Rebase frequently to incorporate upstream changes.
-* Use a [pull request] for code reviews.
+This process is conducted _concurrently_ for multiple changesets. If we have at least one changeset that has passed all 5 steps, and none that are between steps 4 and 5, we are ready to deploy.
 
-[pull request]: https://help.github.com/articles/using-pull-requests/
+We recognize three resulting problems:
 
-Write a Feature
----------------
+1. We cannot deploy when there is any changeset that has finished 1-4 but not 5.
+2. Sometimes, features are constituted by many distinct changesets.
+3. Sometimes, a set of many features should be deployed simultaneously.
 
-Create a local feature branch based off master.
+Therefore, we propose a two-part solution: Use release branches to integrate multiple dependent changesets, and decouple the post-code-review integration from the staging deployment.
 
-    git checkout master
-    git pull
-    git checkout -b <branch-name>
+1. Use release branches. Every branch to be merged into master should represent an atomically deployable feature set (i.e,. a release). Changes should be committed on _branches off of the release branch_ as opposed to branches off of master. There should be at least one development branch for each release branch; there can be multiple development branches for a release branch, to map better to Pivotal stories or to yield more digestible PRs.
+2. Cease automatic staging deployment. As each component development branch is reviewed, revised, and approved it should be _merged into the release branch_. Therefore, as development progresses, the release branch will accumulate merges of approved development branches. Given a release branch, `my-release`, whose component branches have all passed review, QA may be conducted when ready, according to this console-driven process:
+  1. Pull `origin/master` to the local `master`.
+  2. Fork a new local `stage-my-release` branch off of `master`.
+  3. Merge `origin/my-release` into `stage-my-release`.
+  4. Push `stage-my-release` to `staging/master`.
+  5. Wait for the staging deploy to finish.
+  6. Conduct QA through the staging front-end.
+  7. If QA is successful:
+    1. Merge `stage-my-release` back into `master`.
+    2. Push `master` to `origin/master`.
+    3. Push `master` to `staging/master`.
+    4. Push `master` to `production/master`, deploying it to production. (As a result, we no longer need an `origin/production` branch.)
+  8. If QA is not successful:
+    1. Indicate that the feature-set was rejected, in Pivotal Tracker.
+    2. Push `origin/master` to `staging/master` to reset the state of staging.
+  9. Delete the `stage-my-release` branch.
 
-Rebase frequently to incorporate upstream changes.
+Therefore, our proposed development workflow:
 
-    git fetch origin
-    git rebase origin/master
+1. Fork a release branch, `my-release`, from `master`.
+2. Fork a development branch for each required component changeset of the release. There should be at least one.
+3. Submit a pull request for each development branch, and review the component changeset as normal.
+4. Merge the development branch **into the release branch** in GitHub, after successful code review. (This merge should **not** trigger any automatic deployment or delivery.)
+5. When ready to conduct QA, fork a new `stage-my-release` branch from `origin/master`. In the console, merge `origin/my-release` into `stage-my-release` and deliver `stage-my-release` to the staging app.
+6. **If QA is successful**, merge `stage-my-release` back into `origin/master`, deploy it to origin, staging, and production, and clean up your extra branches. **If QA is not successful**, reset the staging app to `origin/master` and note the rejected QA in Pivotal. See above for more details about the QA process.
 
-Resolve conflicts. When feature is complete and tests pass, stage the changes.
-
-    git add --all
-
-When you've staged the changes, commit them.
-
-    git status
-    git commit --verbose
-
-Write a [good commit message]. Example format:
-
-    Present-tense summary under 50 characters
-
-    * More information about commit (under 72 characters).
-    * More information about commit (under 72 characters).
-
-    http://project.management-system.com/ticket/123
-
-If you've created more than one commit,
-[use `git rebase` interactively](https://help.github.com/articles/about-git-rebase/)
-to squash them into cohesive commits with good messages:
-
-    git rebase -i origin/master
-
-Share your branch.
-
-    git push origin <branch-name>
-
-Submit a [GitHub pull request].
-
-Ask for a code review in the project's chat room.
-
-[good commit message]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-[GitHub pull request]: https://help.github.com/articles/using-pull-requests/
-
-Review Code
------------
-
-A team member other than the author reviews the pull request. They follow
-[Code Review](/code-review) guidelines to avoid
-miscommunication.
-
-They make comments and ask questions directly on lines of code in the GitHub
-web interface or in the project's chat room.
-
-For changes which they can make themselves, they check out the branch.
-
-    git checkout <branch-name>
-    ./bin/setup
-    git diff staging/master..HEAD
-
-They make small changes right in the branch, test the feature on their machine,
-run tests, commit, and push.
-
-When satisfied, they comment on the pull request `Ready to merge.`
-
-Merge
------
-
-Rebase interactively. Squash commits like "Fix whitespace" into one or a
-small number of valuable commit(s). Edit commit messages to reveal intent. Run
-tests.
-
-    git fetch origin
-    git rebase -i origin/master
-
-Force push your branch. This allows GitHub to automatically close your pull
-request and mark it as merged when your commit(s) are pushed to master. It also
- makes it possible to [find the pull request] that brought in your changes.
-
-    git push --force-with-lease origin <branch-name>
-
-View a list of new commits. View changed files. Merge branch into master.
-
-    git log origin/master..<branch-name>
-    git diff --stat origin/master
-    git checkout master
-    git merge <branch-name> --ff-only
-    git push
-
-Delete your remote feature branch.
-
-    git push origin --delete <branch-name>
-
-Delete your local feature branch.
-
-    git branch --delete <branch-name>
-
-[find the pull request]: http://stackoverflow.com/a/17819027
+Further reading:
+[A Successful Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/)
+[Continuous Delivery (Wikipedia)](https://en.wikipedia.org/wiki/Continuous_delivery)
