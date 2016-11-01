@@ -9,10 +9,9 @@ Development
 Develop the scripting story similarly to any other story. In this case, this would
 entail running your script at the rails console of your local server during development.
 
-Typically, our scripts should live in the `db/data_migrations/` subdirectory within
-the `healthify/` app repo. In rare cases where that's not feasible, you might use
-a secret [gist](https://help.github.com/articles/about-gists/), whose you link you
-should post on Pivotal Tracker and share with your Code Reviewers.
+Typically, our scripts should live in the `data-scripting` repo. In rare cases where 
+that's not feasible, you might use a secret [gist](https://help.github.com/articles/about-gists/), 
+whose you link you should post on Pivotal Tracker and share with your Code Reviewers.
 
 While some scripts only lend themselves to being performed via pure SQL, where it
 is possible, you should leverage ActiveRecord to perform our `INSERT`/`UPDATE`/`DELETE`
