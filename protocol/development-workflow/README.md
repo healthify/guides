@@ -61,7 +61,7 @@ Create a staging branch off of `master`.
 
     git checkout master
     git pull
-    git checkout -b stage-<release-name>
+    git checkout -b qa/<release-name>
 
 Merge the release branch into the release's staging branch.
 
@@ -69,7 +69,7 @@ Merge the release branch into the release's staging branch.
 
 Push the release's staging branch to GitHub.
 
-    git push -u origin stage-<release-name>
+    git push -u origin qa/<release-name>
 
 Open a pull request to merge the release's staging branch into `master`,
 triggering a Travis CI build to
@@ -93,7 +93,7 @@ Reset the staging remote.
 
 Delete the release's local staging branch.
 
-    git branch -D stage-<release-name>
+    git branch -D qa/<release-name>
 
 Close the pull request on GitHub without merging.
 
@@ -119,7 +119,7 @@ Update your local `master` branch.
 
 Delete the release's local staging branch.
 
-    git branch -d stage-<release-name>
+    git branch -d qa/<release-name>
 
 Delete the local and remote release branches.
 
