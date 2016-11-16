@@ -71,7 +71,7 @@ Push the release's staging branch to GitHub.
 
     git push -u origin stage-<release-name>
 
-Open a pull request to merge the release branch into `master`,
+Open a pull request to merge the release's staging branch into `master`,
 triggering a Travis CI build to
 
     * run our full test suite, and if passing,
