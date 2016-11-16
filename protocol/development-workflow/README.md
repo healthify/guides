@@ -6,7 +6,8 @@ Setting Up the Release Branch
 
 As a team, determine the scope of a release. The release can contain one
 Pivotal Tracker story, or it can combine multiple stories that cannot be
-deployed independently of one another.
+deployed independently of one another. A release will be staged, accepted,
+integrated, and deployed as a single unit.
 
 Create a release branch off of `master`.
 
@@ -57,25 +58,25 @@ Get the most recent state of the release branch.
     git checkout <release-name>
     git pull
 
-Create a staging branch off of `master`.
+Create a QA branch off of `master`.
 
     git checkout master
     git pull
-    git checkout -b stage-<release-name>
+    git checkout -b qa/<release-name>
 
-Merge the release branch into the release's staging branch.
+Merge the release branch into the QA branch.
 
     git merge <release-name>
 
-Push the release's staging branch to GitHub.
+Push the QA branch to GitHub.
 
-    git push -u origin stage-<release-name>
+    git push -u origin qa/<release-name>
 
-Open a pull request to merge the release's staging branch into `master`,
+Open a pull request to merge the QA branch into `master`,
 triggering a Travis CI build to
 
     * run our full test suite, and if passing,
-    * deliver the branch to our staging app.
+    * deliver the QA branch to our staging app.
 
 Wait for the staging delivery to finish.
 
@@ -84,44 +85,44 @@ Conduct QA through the staging app front-end.
 Rejecting
 ---------
 
-Rollback the database migrations of this release on staging.
+Rollback the new database migrations, if any, on the staging app.
 
 Reset the staging remote.
 
     git checkout master
     git push staging master
 
-Delete the release's local staging branch.
+Delete the QA branch locally.
 
-    git branch -D stage-<release-name>
+    git branch -D qa/<release-name>
 
-Close the pull request on GitHub without merging.
+Close the QA branch's pull request on GitHub without merging.
 
-Delete the release's staging branch on GitHub.
+Delete the QA branch on GitHub.
 
 Indicate in Pivotal Tracker that the release was rejected.
 
 Accepting and Deploying
 -----------------------
 
-Merge the pull request on GitHub for the release's staging branch,
-triggering a script to
+Merge the pull request on GitHub for the QA branch, triggering
+a script to
 
     * deliver `master` to staging, and
     * deploy `master` to production.
 
-Delete the release's staging branch on GitHub.
+Delete the QA branch on GitHub.
 
 Update your local `master` branch.
 
     git checkout master
     git pull
 
-Delete the release's local staging branch.
+Delete the QA branch locally.
 
-    git branch -d stage-<release-name>
+    git branch -d qa/<release-name>
 
-Delete the local and remote release branches.
+Delete the release branches locally and remotely.
 
     git branch -d <release-name>
     git push origin :<release-name>
