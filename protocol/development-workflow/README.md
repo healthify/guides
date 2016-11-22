@@ -90,7 +90,7 @@ Rollback the new database migrations, if any, on the staging app.
 Reset the staging remote.
 
     git checkout master
-    git push staging master
+    git push -f staging master:master
 
 Delete the QA branch locally.
 
