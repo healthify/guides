@@ -83,6 +83,10 @@ Wait for the staging delivery to finish.
 
 Conduct QA through the [staging app front-end](https://app.healthify-staging.us).
 
+If required by the specified QA steps, use the staging console.
+
+    aptible ssh --app staging-healthify bin/rails c
+
 Rejecting
 ---------
 
