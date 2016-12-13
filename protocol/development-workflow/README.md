@@ -68,15 +68,16 @@ Merge the release branch into the QA branch.
 
     git merge <release-name>
 
+Deliver the QA branch to the staging app.
+
+    git push staging head:master
+
 Push the QA branch to GitHub.
 
     git push -u origin qa/<release-name>
 
 Open a pull request to merge the QA branch into `master`,
-triggering a Travis CI build to
-
-    * run our full test suite, and if passing,
-    * deliver the QA branch to our staging app.
+triggering a Travis CI build to run our full test suite.
 
 Wait for the staging delivery to finish.
 
@@ -106,10 +107,7 @@ Accepting and Deploying
 -----------------------
 
 Merge the pull request on GitHub for the QA branch, triggering
-a script to
-
-    * deliver `master` to staging, and
-    * deploy `master` to production.
+CI to run all tests and deploy `master` to production.
 
 Delete the QA branch on GitHub.
 
@@ -128,6 +126,11 @@ Delete the release branches locally and remotely.
     git push origin :<release-name>
 
 Indicate in Pivotal Tracker that the release was accepted and deployed.
+
+If QA will not be immediately conducted on another story,
+push the new `master` to the staging app.
+
+    git push staging master
 
 Further reading:
 [A Successful Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/)
