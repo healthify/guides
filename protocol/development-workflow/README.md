@@ -81,7 +81,7 @@ triggering a Travis CI build to run our full test suite.
 
 Wait for the staging delivery to finish.
 
-Conduct QA through the staging app front-end.
+Conduct QA through the [staging app front-end](https://app.healthify-staging.us).
 
 Rejecting
 ---------
