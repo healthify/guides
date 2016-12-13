@@ -86,20 +86,23 @@ Conduct QA through the [staging app front-end](https://app.healthify-staging.us)
 Rejecting
 ---------
 
+Close the QA branch's pull request on GitHub without merging.
+
+Delete the QA branch on GitHub.
+
 Rollback the new database migrations, if any, on the staging app.
+
+    git diff master --name-only -- db/migrate
+    aptible ssh --app staging-healthify bin/rake db:rollback STEP=<number-of-migrations>
 
 Reset the staging remote.
 
     git checkout master
-    git push -f staging master:master
+    git push -f staging master
 
 Delete the QA branch locally.
 
     git branch -D qa/<release-name>
-
-Close the QA branch's pull request on GitHub without merging.
-
-Delete the QA branch on GitHub.
 
 Indicate in Pivotal Tracker that the release was rejected.
 
