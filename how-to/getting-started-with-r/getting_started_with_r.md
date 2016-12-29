@@ -2,15 +2,60 @@
 
 # Getting started with R
 
-R is a free, open-source high-level programming language and software environment used primarily for statistical computing and graphics. 
+R is a free and open-source, high-level programming language and software environment used primarily for statistical computing and graphics. 
 
 ## R at Healthify:
 R is currently used for web scraping and data processing tasks.
 
 ## First steps:
-Start by downloading [R](http://cran.r-project.org/) and [RStudio](http://www.rstudio.com/ide/), the R IDE (optional, but highly recommended).
+Start by downloading and installing [R](http://cran.r-project.org/) and [RStudio](http://www.rstudio.com/ide/), the R IDE (optional, but highly recommended).  
+Alternatively, run from your terminal:
+
+```
+$ brew tap science
+$ brew install r
+$ brew cask install rstudio
+```
+
+After installing R, you can open the R shell.  
+In your terminal, simply use:
+
+```
+$ R
+```
+You will see something like this:
+
+```
+R version 3.3.1 (2016-06-21) -- "Bug in Your Hair"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+>
+```
+
+To run an existing R script from your terminal, use:
+
+```
+$ Rscript your_r_file_here.R
+```
 
 ## Getting help:
+The following R commands (as well as any other R command) work both in the R shell and in RStudio:
+
 ```
 help.start()              # Load HTML help pages into browser
 help(package)             # List help page for "package"
@@ -22,7 +67,7 @@ demo()                    # List topics for which demos are available
 q()                       # Quit R
 ```
 
-## Useful links:
+## Useful links to get started:
 - [R](https://www.r-project.org/) homepage
 - Homepage of [CRAN](https://cran.r-project.org/), the Comprehensive R Archive Network
 - [R cheat sheet](https://cran.r-project.org/doc/contrib/Short-refcard.pdf)
@@ -34,22 +79,22 @@ q()                       # Quit R
 - [Cross Validated](https://stats.stackexchange.com/questions/tagged/r), a Q&A site on statistics, machine learning, data analysis, data mining, and data visualization 
 - Coursera's [R Programming course](https://www.coursera.org/learn/r-programming)
 
-## Unit testing in R:
+## Unit testing with package RUnit:
 
-We are using R package `RUnit` for unit testing.
-
-### Links:
+### Links to get started:
 - [RUnit homepage](https://cran.r-project.org/web/packages/RUnit/index.html)
 - [RUnit manual](https://cran.r-project.org/web/packages/RUnit/RUnit.pdf)
 - [RUnit primer](https://cran.r-project.org/web/packages/RUnit/vignettes/RUnit.pdf)
 
 ### Example:
-Let's assume we want to test a function `SquareInteger` that is stored in file `my_file.R`.  
-To test function `SquareInteger`, we create a directory called `tests` that will store all of our test cases.  
-In `tests`, we create a file called `runit_square_integer.R` that will contain our first set of tests.  
-Each set of tests will go in a function inside of `runit_square_integer.R`, named with prefix `Test`, in this example `TestSquareInteger`.
+To test a function `SquareInteger` in file `my_file.R`:
 
-Example for `runit.R`:
+1. Create a directory called `tests`
+2. Create a file `tests/runit_square_integer.R` with function `TestSquareInteger` (code see below)
+3. Create test script `run_tests.R` (code see below)
+4. Run test script `run_tests.R`
+
+Code of `tests/runit_square_integer.R`:
 
 ```
 TestSquareInteger <- function() {
@@ -59,7 +104,8 @@ TestSquareInteger <- function() {
   checkException(SquareInteger('foo'), 'Unable to square a string')
 }
 ```
-To run this set of tests, we need to create a file (arbitrarily) called `run_tests.R` that will act as a test suite and invoke all of the tests in your `tests` directory:
+
+Code of `run_tests.R`:
 
 ```
 library('RUnit')
