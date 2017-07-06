@@ -142,3 +142,30 @@ push the new `master` to the staging app.
 Further reading:
 [A Successful Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/)
 [Continuous Delivery (Wikipedia)](https://en.wikipedia.org/wiki/Continuous_delivery)
+
+
+Small, discretionary releases
+--------------------------
+Sometimes a change is so small that it doesn't warrent the entire 
+workflow process described above. For instance, a single typo in
+the transaltion files, or adding a single anchorlink to a page. In
+these scenarios, the developer is welcome to make a pull request
+pointed directly at master given the following:
+
+1. The developer communicates to the code reviewer that this is
+going directly into master.
+2. The code reviewer agrees that it is reasonably small and agreeable
+that the normal process is skipped.
+
+Given those conditions, the following should happen:
+
+After code review is completed, the developer manually pushes
+their release branch  onto staging. 
+
+    git push staging master
+
+When completed, the developer does their own QA to ensure things
+are still in ship shape.
+
+Given that it passes on staging, the developer may merge their 
+pull request into master.
