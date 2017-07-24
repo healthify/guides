@@ -53,6 +53,8 @@ ready for QA.
 Conducting QA
 -------------
 
+If this is your first time conducting QA, please reference [QA Setup](qa-setup.md) in these guides.
+
 Get the most recent state of the release branch.
 
     git checkout <release-name>
@@ -68,24 +70,25 @@ Merge the release branch into the QA branch.
 
     git merge <release-name>
 
-Deliver the QA branch to the staging app.
+Determine which server is available on the [server spreadsheet](https://docs.google.com/spreadsheets/d/1qZ5x80cYXHxACJbZ20W5MqH6ETRFDmaLTnsjaqen6O0/edit), update the row of your choice, and push to that server.
 
-    git push staging head:master
+    git push <APP REMOTE> head:master --force
+
+Where <APP REMOTE> is the name of the remote you set up for the server of your choice. If you're not sure what's available, use `git remote -v` and refresh yourself by reading the [QA Setup](qa-setup.md) steps.
 
 Push the QA branch to GitHub.
 
     git push -u origin qa/<release-name>
 
-Open a pull request to merge the QA branch into `master`,
-triggering a Travis CI build to run our full test suite.
+Open a pull request to merge the QA branch into `master`, triggering a Travis CI build to run our full test suite.
 
 Wait for the staging delivery to finish.
 
-Conduct QA through the [staging app front-end](https://app.healthify-staging.us).
+Conduct QA through your staging app's frontend. Reference the Server Spreadsheet to find the correct URL for your app.
 
 If required by the specified QA steps, use the staging console.
 
-    aptible ssh --app staging-healthify bin/rails c
+    aptible ssh --app <APP NAME> bin/rails c
 
 Rejecting
 ---------
@@ -97,12 +100,12 @@ Delete the QA branch on GitHub.
 Rollback the new database migrations, if any, on the staging app.
 
     git diff master --name-only -- db/migrate
-    aptible ssh --app staging-healthify bin/rake db:rollback STEP=<number-of-migrations>
+    aptible ssh --app <APP NAME> bin/rake db:rollback STEP=<number-of-migrations>
 
 Reset the staging remote.
 
     git checkout master
-    git push -f staging master
+    git push -f <APP REMOTE> master
 
 Delete the QA branch locally.
 
@@ -134,10 +137,9 @@ Delete the release branches locally and remotely.
 
 Indicate in Pivotal Tracker that the release was accepted and deployed.
 
-If QA will not be immediately conducted on another story,
-push the new `master` to the staging app.
+If QA will not be immediately conducted on another story, push the new `master` to the staging app.
 
-    git push staging master
+    git push <APP REMOTE> master
 
 Further reading:
 [A Successful Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/)
