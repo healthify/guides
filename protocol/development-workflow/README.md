@@ -146,9 +146,9 @@ Further reading:
 
 Small, discretionary releases
 --------------------------
-Sometimes a change is so small that it doesn't warrent the entire 
+Sometimes a change is so small that it doesn't warrant the entire
 workflow process described above. For instance, a single typo in
-the transaltion files, or adding a single anchorlink to a page. In
+the translation files, or refactoring tests. In
 these scenarios, the developer is welcome to make a pull request
 pointed directly at master given the following:
 
@@ -160,12 +160,14 @@ that the normal process is skipped.
 Given those conditions, the following should happen:
 
 After code review is completed, the developer manually pushes
-their release branch  onto staging. 
+their release branch onto a staging server.
 
-    git push staging master
+    git push <staging-remote> head:master
+
+> Don't forget to update the [Server Status Spreadsheet](https://docs.google.com/spreadsheets/d/1qZ5x80cYXHxACJbZ20W5MqH6ETRFDmaLTnsjaqen6O0/edit#gid=0) before and after you perform QA.
 
 When completed, the developer does their own QA to ensure things
 are still in ship shape.
 
-Given that it passes on staging, the developer may merge their 
+Given that it passes on staging, the developer may merge their
 pull request into master.
