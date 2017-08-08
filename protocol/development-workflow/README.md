@@ -1,8 +1,6 @@
-Development Workflow
-====================
+# Development Workflow
 
-Setting Up the Release Branch
------------------------------
+## Setting Up the Release Branch
 
 As a team, determine the scope of a release. The release can contain one
 Pivotal Tracker story, or it can combine multiple stories that cannot be
@@ -19,8 +17,7 @@ Push the release branch to GitHub.
 
     git push -u origin <release-name>
 
-Developing for the Release
---------------------------
+## Developing for the Release 
 
 Create a development branch off of the release branch.
 
@@ -50,8 +47,7 @@ components of the release. When the last development branch has been
 merged, indicate in Pivotal Tracker that the release is delivered and
 ready for QA.
 
-Conducting QA
--------------
+## Conducting QA
 
 If this is your first time conducting QA, please reference [QA Setup](qa-setup.md) in these guides.
 
@@ -90,8 +86,7 @@ If required by the specified QA steps, use the staging console.
 
     aptible ssh --app <APP NAME> bin/rails c
 
-Rejecting
----------
+### Rejecting
 
 Close the QA branch's pull request on GitHub without merging.
 
@@ -113,8 +108,7 @@ Delete the QA branch locally.
 
 Indicate in Pivotal Tracker that the release was rejected.
 
-Accepting and Deploying
------------------------
+### Accepting and Deploying
 
 Merge the pull request on GitHub for the QA branch, triggering
 CI to run all tests and deploy `master` to production.
@@ -146,8 +140,8 @@ Further reading:
 [Continuous Delivery (Wikipedia)](https://en.wikipedia.org/wiki/Continuous_delivery)
 
 
-Small, discretionary releases
---------------------------
+## Small, discretionary releases
+
 Sometimes a change is so small that it doesn't warrant the entire
 workflow process described above. For instance, a single typo in
 the translation files, or refactoring tests. In
