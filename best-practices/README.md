@@ -232,10 +232,8 @@ Sass
 * Avoid using ID selectors.
 * Avoid element selectors.
 * Avoid decendant selectors, or any highly specific selectors when possible.
-* Avoid nesting
+* Avoid nesting to avoid high specificity.
 * Don't use `!important`.
-* Prefer `overflow: auto` to `overflow: scroll`, because `scroll` will always
-  display scrollbars outside of OS X, even when content fits in the container.
 * Use [Autoprefixer][autoprefixer] to generate vendor prefixes based on the
   project-specific browser support that is needed.
 * Prefer small, organized partials to long files.
