@@ -1,7 +1,7 @@
 Best Practices
 ==============
 
-A guide for programming well.
+A guide for programming at Healthify.
 
 General
 -------
@@ -215,24 +215,32 @@ HTML
 * Don't use a reset button for forms.
 * Prefer cancel links to cancel buttons.
 * Use `<button>` tags over `<a>` tags for actions.
+* Use semantic tags where applicable. 
 
 CSS
 ---
 
 * Use Sass.
-* Use [Autoprefixer][autoprefixer] to generate vendor prefixes based on the
-  project-specific browser support that is needed.
-
-[autoprefixer]: https://github.com/postcss/autoprefixer
 
 Sass
 ----
 
-* Prefer `overflow: auto` to `overflow: scroll`, because `scroll` will always
-  display scrollbars outside of OS X, even when content fits in the container.
 * Use `image-url` and `font-url`, not `url`, so the asset pipeline will re-write
   the correct paths to assets.
-* Prefer mixins to `@extend`.
+* Prefer mixins over `@extend`.
+* Prefer reusable classes over mixins.
+* Avoid using ID selectors.
+* Avoid element selectors.
+* Avoid decendant selectors, or any highly specific selectors when possible.
+* Avoid nesting to avoid high specificity.
+* Don't use `!important`.
+* Use [Autoprefixer][autoprefixer] to generate vendor prefixes based on the
+  project-specific browser support that is needed.
+* Prefer small, organized partials to long files.
+* Use BEM naming conventions
+* Avoid large frameworks for solving small problems
+
+[autoprefixer]: https://github.com/postcss/autoprefixer
 
 Browsers
 --------
