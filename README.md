@@ -3,8 +3,6 @@ Guides
 
 Guides for getting things done, programming well, and programming in style.
 
-Initial state copied from [thoughtbot/guides](https://github.com/thoughtbot/guides).
-
 * [Best Practices](/best-practices)
 * [Code Review](/code-review)
 * [How to](/how-to)
@@ -45,11 +43,7 @@ waiting a week for everybody to leave feedback**.
 Credits
 -------
 
-Thank you, [contributors](https://github.com/thoughtbot/guides/graphs/contributors)!
-
-![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
-
-Guides is maintained by [thoughtbot, inc](http://thoughtbot.com/community).
+Thank you, Thoughtbot for the initial state of this repo.
 
 License
 -------
