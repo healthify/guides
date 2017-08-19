@@ -132,6 +132,7 @@ Testing
 * Use a [Fake] to stub requests to external services.
 * Use integration tests to execute the entire app.
 * Use non-[SUT] methods in expectations when possible.
+* Prefer data attribute selectors (ie `[data-test="foo"]`) over class selectors.
 
 [dependency injection]: http://en.wikipedia.org/wiki/Dependency_injection
 [subject-example]: ../style/testing/unit_test_spec.rb
@@ -183,16 +184,11 @@ Background Jobs
 
 Email
 -----
+* Run copy changes by the Product team
+* Use a tool like [Mailcatcher] to look at each created or updated mailer view
+  before merging. Include screenshots of changed emails in your pull requests.
 
-* Use [SendGrid] or [Amazon SES] to deliver email in staging and production
-  environments.
-* Use a tool like [ActionMailer Preview] to look at each created or updated mailer view
-  before merging. Use [MailView] gem unless using Rails version 4.1.0 or later.
-
-[Amazon SES]: http://robots.thoughtbot.com/post/3105121049/delivering-email-with-amazon-ses-in-a-rails-3-app
-[SendGrid]: https://devcenter.heroku.com/articles/sendgrid
-[MailView]: https://github.com/37signals/mail_view
-[ActionMailer Preview]: http://api.rubyonrails.org/v4.1.0/classes/ActionMailer/Base.html#class-ActionMailer::Base-label-Previewing+emails
+[Mailcatcher]: https://mailcatcher.me/
 
 Web
 ---
@@ -206,16 +202,14 @@ JavaScript
 * Use the latest stable JavaScript syntax with a transpiler, such as [babel].
 * Include a `to_param` or `href` attribute when serializing ActiveRecord models,
   and use that when constructing URLs client side, rather than the ID.
+* Prefer data attribute selectors (ie `[data-behavior="foo"]`) over class selectors.
 
 [babel]: http://babeljs.io/
 
 HTML
 ----
-
-* Don't use a reset button for forms.
-* Prefer cancel links to cancel buttons.
 * Use `<button>` tags over `<a>` tags for actions.
-* Use semantic tags where applicable. 
+* Use semantic tags where applicable (ie `footer`, `header`, `article`, etc).
 
 CSS
 ---
@@ -224,7 +218,8 @@ CSS
 
 Sass
 ----
-
+* Use SCSS syntax.
+* Use [BEM naming conventions].
 * Use `image-url` and `font-url`, not `url`, so the asset pipeline will re-write
   the correct paths to assets.
 * Prefer mixins over `@extend`.
@@ -232,28 +227,20 @@ Sass
 * Avoid using ID selectors.
 * Avoid element selectors.
 * Avoid decendant selectors, or any highly specific selectors when possible.
-* Avoid nesting to avoid high specificity.
+* Avoid nesting to avoid high specificity (see above).
 * Don't use `!important`.
 * Use [Autoprefixer][autoprefixer] to generate vendor prefixes based on the
   project-specific browser support that is needed.
 * Prefer small, organized partials to long files.
-* Use BEM naming conventions
 * Avoid large frameworks for solving small problems
 
 [autoprefixer]: https://github.com/postcss/autoprefixer
+[BEM naming conventions]: http://getbem.com/introduction/
 
 Browsers
 --------
 
-* Avoid supporting versions of Internet Explorer before IE10.
-
-Objective-C
------------
-
-* Setup new projects using [Liftoff](https://github.com/thoughtbot/liftoff) and
-  follow provided directory structure.
-* Prefer categories on `Foundation` classes to helper methods.
-* Prefer string constants to literals when providing keys or key paths to methods.
+* Reference the applications browserlist file to identify browser support.
 
 Shell
 -----
@@ -310,11 +297,6 @@ In addition to Shell best practices,
 * Prefer process substitution over a pipe in `while read` loops.
 * Use `((` or `let`, not `$((` when you don't need the result
 
-Haskell
--------
-
-* Avoid partial functions (`head`, `read`, etc).
-* Compile code with `-Wall -Werror`.
 
 Ember
 -----
@@ -341,21 +323,6 @@ Testing
 
 [inject]: samples/ember.js#L1-L11
 
-Angular
--------
-
-* [Avoid manual dependency annotations][annotations]. Disable mangling or use a
-  [pre-processor][ngannotate] for annotations.
-* Prefer `factory` to `service`. If you desire a singleton, wrap the singleton
-  class in a factory function and return a new instance of that class from the
-  factory.
-* Prefer the `translate` directive to the `translate` filter for [performance
-  reasons][angular-translate].
-* Don't use the `jQuery` or `$` global. Access jQuery via `angular.element`.
-
-[annotations]: http://robots.thoughtbot.com/avoid-angularjs-dependency-annotation-with-rails
-[ngannotate]: https://github.com/kikonen/ngannotate-rails
-[angular-translate]: https://github.com/angular-translate/angular-translate/wiki/Getting-Started#using-translate-directive
 
 Ruby JSON APIs
 --------------
