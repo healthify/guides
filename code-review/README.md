@@ -20,8 +20,8 @@ Everyone
 * Don't use sarcasm.
 * Keep it real. If emoji, animated gifs, or humor aren't you, don't force them.
   If they are, use them with aplomb.
-* Talk synchronously (e.g. chat, screensharing, in person) if there are too many 
-  "I didn't understand" or "Alternative solution:" comments. Post a follow-up 
+* Talk synchronously (e.g. chat, screensharing, in person) if there are too many
+  "I didn't understand" or "Alternative solution:" comments. Post a follow-up
   comment summarizing the discussion.
 
 Having Your Code Reviewed
@@ -40,9 +40,9 @@ Having Your Code Reviewed
   able to read individual updates based on their earlier feedback.
 * Seek to understand the reviewer's perspective.
 * Try to respond to every comment.
-* Wait to merge the branch until Continuous Integration (TDDium, TravisCI, etc.)
+* Wait to merge the branch until Continuous Integration (TravisCI)
   tells you the test suite is green in the branch.
-* Merge once you feel confident in the code and its impact on the project.
+* Merge when approved by the person reviewing your code.
 
 Reviewing Code
 --------------
