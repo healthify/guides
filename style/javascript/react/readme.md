@@ -2,6 +2,8 @@
 
 *A mostly reasonable approach to React and JSX*
 
+Forked from [Airbnb](https://github.com/airbnb/javascript/blob/master/react/README.md).
+
 ## Table of Contents
 
   1. [Basic Rules](#basic-rules)

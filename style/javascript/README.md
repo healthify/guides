@@ -2,7 +2,9 @@
 
 *A mostly reasonable approach to JavaScript*
 
-  - [ES5 (Deprecated)](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
+Forked from [Airbnb](https://github.com/airbnb/javascript/blob/master/README.md).
+
+## Related Healthify Guides
   - [React](react/)
 
 ## Table of Contents
