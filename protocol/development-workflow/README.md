@@ -17,7 +17,7 @@ Push the release branch to GitHub.
 
     git push -u origin <release-name>
 
-## Developing for the Release 
+## Developing for the Release
 
 Create a development branch off of the release branch.
 
@@ -66,6 +66,8 @@ Merge the release branch into the QA branch.
 
     git merge <release-name>
 
+Copy the QA steps from the Pivotal Tracker story into the PR description, and put the story ID in the PR title. Add the link to the PT story in the description of the PR.
+
 Determine which server is available on the [server spreadsheet](https://docs.google.com/spreadsheets/d/1qZ5x80cYXHxACJbZ20W5MqH6ETRFDmaLTnsjaqen6O0/edit), update the row of your choice, and push to that server.
 
     git push <APP REMOTE> head:master --force
@@ -108,6 +110,8 @@ Delete the QA branch locally.
 
 Indicate in Pivotal Tracker that the release was rejected.
 
+Be sure to update the server spreadsheet when you are done using a staging server.
+
 ### Accepting and Deploying
 
 Merge the pull request on GitHub for the QA branch, triggering
@@ -131,9 +135,11 @@ Delete the release branches locally and remotely.
 
 Indicate in Pivotal Tracker that the release was accepted and deployed.
 
-If QA will not be immediately conducted on another story, push the new `master` to the staging app.
+If QA will not be immediately conducted on another story, push the new `master` to the staging app, as well as all unused staging servers.
 
     git push <APP REMOTE> master
+
+Be sure to update the server spreadsheet when you are done using a staging server.
 
 Further reading:
 [A Successful Git Branching Model](http://nvie.com/posts/a-successful-git-branching-model/)
@@ -161,6 +167,8 @@ their release branch onto a staging server.
     git push <staging-remote> head:master
 
 > Don't forget to update the [Server Status Spreadsheet](https://docs.google.com/spreadsheets/d/1qZ5x80cYXHxACJbZ20W5MqH6ETRFDmaLTnsjaqen6O0/edit#gid=0) before and after you perform QA.
+
+Note: In the case of a dependency update, QA involves deploying to a staging server and ensuring that the application doesn't crash.
 
 When completed, the developer does their own QA to ensure things
 are still in ship shape.
