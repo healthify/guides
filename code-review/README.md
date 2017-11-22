@@ -29,7 +29,7 @@ For more information, review the [ISMS policy documentation in Aptible][isms-pol
     * After completing your review, request review from a CM so that they can
       sign-off on the pull request.
 
-## Everyone
+## General Guidance
 
 * Accept that many programming decisions are opinions. Discuss tradeoffs, which
   you prefer, and reach a resolution quickly.
