@@ -1,10 +1,8 @@
-Code Review
-===========
+# Code Review
 
 A guide for reviewing code and having your code reviewed.
 
-Everyone
---------
+## Everyone
 
 * Accept that many programming decisions are opinions. Discuss tradeoffs, which
   you prefer, and reach a resolution quickly.
@@ -24,8 +22,7 @@ Everyone
   "I didn't understand" or "Alternative solution:" comments. Post a follow-up
   comment summarizing the discussion.
 
-Having Your Code Reviewed
--------------------------
+## Having Your Code Reviewed
 
 * Be grateful for the reviewer's suggestions. ("Good call. I'll make that
   change.")
@@ -44,8 +41,7 @@ Having Your Code Reviewed
   tells you the test suite is green in the branch.
 * Merge when approved by the person reviewing your code.
 
-Reviewing Code
---------------
+## Reviewing Code
 
 Understand why the change is necessary (fixes a bug, improves the user
 experience, refactors the existing code). Then:
@@ -61,8 +57,7 @@ experience, refactors the existing code). Then:
 * Sign off on the pull request by approving a [pull request
   review][pr-review-docs] in Github.
 
-Style Comments
---------------
+## Style Comments
 
 Reviewers should comment on missed [style](../style)
 guidelines. Example comment:
