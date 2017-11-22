@@ -58,7 +58,8 @@ experience, refactors the existing code). Then:
 * Offer alternative implementations, but assume the author already considered
   them. ("What do you think about using a custom validator here?")
 * Seek to understand the author's perspective.
-* Sign off on the pull request with a :thumbsup: or "Ready to merge" comment.
+* Sign off on the pull request by approving a [pull request
+  review][pr-review-docs] in Github.
 
 Style Comments
 --------------
@@ -76,3 +77,5 @@ An example response to style comments:
 
 If you disagree with a guideline, open an issue on the guides repo rather than
 debating it within the code review. In the meantime, apply the guideline.
+
+[pr-review-docs]:https://help.github.com/articles/about-pull-request-reviews/
