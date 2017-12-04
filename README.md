@@ -12,6 +12,7 @@ Guides for getting things done, programming well, and programming in style.
   * [Open Source](/protocol/open-source)
   * [Product Review](/protocol/product-review)
   * [Rails](/protocol/rails)
+  * [Workflow](/protocol/development-workflow)
 * [Security](/security)
 * [Style](/style)
 
