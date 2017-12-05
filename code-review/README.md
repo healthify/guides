@@ -84,6 +84,36 @@ experience, refactors the existing code). Then:
 * Sign off on the pull request by approving a [pull request
   review][pr-review-docs] in Github.
 
+### Migrations & Potential Downtime
+
+Due to our deployment process, we can encounter momentary `500` statuses when performing certain migration procedures. Namely, **removing** and **renaming** columns can result in these intermittent downtimes. Here's an example:
+
+1. We have an attribute `Model#unused_attribute`.
+2. A request comes in to remove this attribute and all references.
+3. We generate a migration to remove the attribute and references.
+4. We deploy the changes.
+5. _Uh oh..._
+
+During the migration period, just after the column is removed, the codebase changes have yet to rollover. Thus, if a user visits a page that references `Model#unused_attribute`, an exception will be raised, resulting in some potential downtimes.
+ 
+> ***
+> 
+> :information_source: When under SLA for service uptime, we must be especially cautious about unnecessary downtime. Therefore, please pay particular attention to migrations that involve removing and/or renaming columns in the database.
+> 
+> ***
+
+**When removing a column** that is currently in use, we should deploy two (2) separate releases:
+
+1. The first release should remove the references to the column:
+    + Views
+    + Validations
+    + Decorators
+    + _etc..._
+2. The second release should actually modify the database.
+    + This will also potentially give us time to update any ancillary services that connect and report on these columns.
+
+**When renaming a column**, the simplest measure seems to be to schedule a deployment after-hours, otherwise we end up with an overly-complicated development cycle.
+
 ## Style Comments
 
 Reviewers should comment on missed [style](../style)
