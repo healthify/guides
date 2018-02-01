@@ -7,6 +7,7 @@ git remote add demo git@beta.aptible.com:healthify-staging/demo-healthify.git
 git remote add hoth git@beta.aptible.com:healthify-staging/hoth-healthify.git
 git remote add staging git@beta.aptible.com:healthify-staging/staging-healthify.git
 git remote add tatooine git@beta.aptible.com:healthify-staging/tatooine-healthify.git
+git remote add naboo git@beta.aptible.com:healthify-staging/naboo-healthify.git
 ```
 
 > 📌 Note that you should add your public SSH key to aptible. To get that key, run `cat ~/.ssh/id_rsa.pub`, copy the output, and paste it in your Aptible SSH key settings.

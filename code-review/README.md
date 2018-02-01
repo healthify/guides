@@ -1,10 +1,35 @@
-Code Review
-===========
+# Code Review
 
 A guide for reviewing code and having your code reviewed.
 
-Everyone
---------
+## Codebase Maintainers
+
+### Goal
+
+To ensure that software development has the eyes of developers that have
+significant context on the Healthify system and meet HIPAA/HITRUST requirements
+for secure software development lifecycles (SDLCs).
+
+For more information, review the [ISMS policy documentation in Aptible][isms-policy-link].
+
+### Policy
+
+* For every Healthify codebase that contains sensitive data, one or many code
+  maintainers are defined.
+* A code maintainer (CM) is defined as someone that has worked at Healthify for 90
+  days and has been approved by engineering leadership to be a code maintainer.
+* If you are a CM:
+  * When developing software you still must receive code review, but code review
+    may happen by any developer, whether they are a CM or not.
+* If you are not a CM:
+  * When developing software, you must receive an approved code review by a CM.
+  * When performing code review, you must not approve a pull request in the
+    Github web UI.
+    * With that said, you can (and are encouraged to) perform code review.
+    * After completing your review, request review from a CM so that they can
+      sign-off on the pull request.
+
+## General Guidance
 
 * Accept that many programming decisions are opinions. Discuss tradeoffs, which
   you prefer, and reach a resolution quickly.
@@ -24,8 +49,7 @@ Everyone
   "I didn't understand" or "Alternative solution:" comments. Post a follow-up
   comment summarizing the discussion.
 
-Having Your Code Reviewed
--------------------------
+## Having Your Code Reviewed
 
 * Be grateful for the reviewer's suggestions. ("Good call. I'll make that
   change.")
@@ -44,8 +68,7 @@ Having Your Code Reviewed
   tells you the test suite is green in the branch.
 * Merge when approved by the person reviewing your code.
 
-Reviewing Code
---------------
+## Reviewing Code
 
 Understand why the change is necessary (fixes a bug, improves the user
 experience, refactors the existing code). Then:
@@ -58,10 +81,10 @@ experience, refactors the existing code). Then:
 * Offer alternative implementations, but assume the author already considered
   them. ("What do you think about using a custom validator here?")
 * Seek to understand the author's perspective.
-* Sign off on the pull request with a :thumbsup: or "Ready to merge" comment.
+* Sign off on the pull request by approving a [pull request
+  review][pr-review-docs] in Github.
 
-Style Comments
---------------
+## Style Comments
 
 Reviewers should comment on missed [style](../style)
 guidelines. Example comment:
@@ -76,3 +99,6 @@ An example response to style comments:
 
 If you disagree with a guideline, open an issue on the guides repo rather than
 debating it within the code review. In the meantime, apply the guideline.
+
+[isms-policy-link]:https://dashboard.aptible.com/gridiron/986de3df-091e-482a-b8c3-513ddd08cf87/
+[pr-review-docs]:https://help.github.com/articles/about-pull-request-reviews/

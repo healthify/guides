@@ -9,6 +9,7 @@ Guides for getting things done, programming well, and programming in style.
 * [Protocol](/protocol)
   * [Communication](/protocol/communication)
   * [Git](/protocol/git)
+  * [Workflow](/protocol/development-workflow)
 * [Security](/security)
 * [Style](/style)
 
