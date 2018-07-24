@@ -1,32 +1,38 @@
-Style
-=====
+# Style
 
-A guide for programming in style.
+At Healthify, we determine code conventions by team consensus. Our aim is to create an environment that is conducive to a high level of code quality and that developers enjoy coding in.
 
-Use [Hound] to automatically review your
-GitHub pull requests for
-style guide violations.
+We enforce code styles with [Hound](hound) during CI. You can enforce styles locally using [RuboCop](rubocop) for Ruby code, or [jshint][jshint] for JavaScript code. To see our most up to date styles for the languages we use, check out the following files in our [main repository](main-repo) (private access):
 
-[Hound]: https://houndci.com
+```
+.haml-style.yml
+.javascript-style.json
+.rubocop.yml
+.scss-style.yml
+```
+
+[hound]: https://houndci.com/
+[rubocop]: http://batsov.com/rubocop/
+[main-repo]: https://github.com/healthify/healthify
+[jshint]: http://jshint.com/install/
+
+## System-specific guidelines
 
 In addition to the general guidelines below, we also have the following more
 detailed, language/framework-specific style guides:
-
 
 * [Ember.js](ember)
 * [ERb](erb)
 * [Git](git)
 * [HTML](html)
 * [JavaScript](javascript)
-
 * [Rails](rails)
 * [Ruby](ruby)
 * [Sass](sass)
 * [Shell](shell)
 * [Testing](testing)
 
-Formatting
-----------
+## Formatting
 
 * Avoid inline comments.
 * Break long lines after 80 characters.
@@ -55,8 +61,7 @@ Formatting
 [uppercase for SQL key words and lowercase for SQL identifiers]: http://www.postgresql.org/docs/9.2/static/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
 [newline explanation]: http://unix.stackexchange.com/questions/23903/should-i-end-my-text-script-files-with-a-newline
 
-Naming
-------
+## Naming
 
 * Avoid abbreviations.
 * Avoid object types in names (`user_array`, `email_method` `CalculatorClass`, `ReportModule`).
@@ -70,8 +75,7 @@ Naming
   even if the acronym is the entire name (`class Html` not `class HTML`).
 * Suffix variables holding a factory with `_factory` (`user_factory`).
 
-Organization
-------------
+## Organization
 
 * Order methods so that caller methods are earlier in the file than the methods
   they call.
