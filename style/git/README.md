@@ -56,11 +56,13 @@ git rebase -i HEAD~5
 git rebase -i release/feature-work
 ```
 
+As with everything, use your best judgement to rebase. Here are some example cases:
+
 - You may want to `fixup` or `squash` commits if you are correcting typos or making small fixes to a single class frequently.
 - You may want to use `reword` if you prefixed a commit message with `WIP`, when it is actually an isolated change.
 - Or, if you are refactoring a class, you may want that in its own commit, avoiding the rebase method altogether!
 
-As with everything, use your best judgement to rebase.
+Generally speaking, you should aim to rebase and squash commits down to cohesive groups of code changes. Ensure each commit includes stable, working code.
 
 ## Make small PRs
 
