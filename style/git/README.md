@@ -8,7 +8,7 @@ As with all things, try to be consistent with your Git usage.
 
 ## Commit messages
 
-Write a [good commit message][].
+Write a [good commit message][good-commit-message].
 
 Here's one example:
 
@@ -46,7 +46,7 @@ Here's the solution.
 
 ## Rebasing
 
-To ease the process of walking through Git history when debugging (ie: if you've created more than one commit), use [git rebase interactively][] to squash them into cohesive commits with good messages.
+To ease the process of walking through Git history when debugging (ie: if you've created more than one commit), use [git rebase interactively][git-rebase-interactively] to squash them into cohesive commits with good messages.
 
 Some examples of rebase usage:
 
@@ -69,5 +69,5 @@ Generally speaking, you should aim to rebase and squash commits down to cohesive
 PRs with over 250 lines of additive diff are considered large. _It is valuable to artificially break up PRs for the sake of making them smaller._ With that said, always try to make PRs deployable on their own (i.e. introduce a feature flag if needed). The smaller the PR, the easier it is to review, the faster it is to get it deployed.
 
 
-[good commit message]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-[git rebase interactively]: https://help.github.com/articles/about-git-rebase/
+[good-commit-message]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+[git-rebase-interactively]: https://help.github.com/articles/about-git-rebase/
